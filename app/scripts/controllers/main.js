@@ -8,7 +8,12 @@
  * Controller of the quiddityInteractiveApp
  */
 angular.module('quiddityInteractiveApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope,TabletopService) {
+
+  	TabletopService.getData().then(function(response){
+  		$scope.data = response.data;
+  		console.log(response.data);
+  	});
 
   	$scope.candidatoText = {
   		'macri':'a Macri',
