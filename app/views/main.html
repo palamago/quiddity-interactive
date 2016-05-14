@@ -9,16 +9,27 @@
   <div class="col-md-6">
       <h2>¿A quién votaste en primera vuelta?</h2>
       <button class="btn btn-default option-primera" ng-class="{active:primera=='macri'}" ng-click="selectPrimera($event,'macri')">Mauricio Macri</button>
-      <button class="btn btn-default option-primera" ng-click="selectPrimera($event,'scioli')">Daniel Scioli</button>
-      <button class="btn btn-default option-primera" ng-click="selectPrimera($event,'otro')">Otro candidato</button>
-      <button class="btn btn-default option-primera" ng-click="selectPrimera($event,'blanco')">Blanco/Impugnado</button>
+      <button class="btn btn-default option-primera" ng-class="{active:primera=='scioli'}" ng-click="selectPrimera($event,'scioli')">Daniel Scioli</button>
+      <button class="btn btn-default option-primera" ng-class="{active:primera=='otro'}" ng-click="selectPrimera($event,'otro')">Otro candidato</button>
+      <button class="btn btn-default option-primera" ng-class="{active:primera=='blanco'}" ng-click="selectPrimera($event,'blanco')">Blanco/Impugnado</button>
   </div>
   <div class="col-md-6">
       <h2>¿A quién votaste en Ballotage?</h2>
-      <button class="btn btn-default option-segunda" ng-click="selectSegunda($event,'macri')">Mauricio Macri</button>
-      <button class="btn btn-default option-segunda" ng-click="selectSegunda($event,'scioli')">Daniel Scioli</button>
-      <button class="btn btn-default option-segunda" ng-click="selectSegunda($event,'blanco')">Blanco/Impugnado</button>
+      <button class="btn btn-default option-segunda" ng-class="{active:segunda=='macri'}" ng-click="selectSegunda($event,'macri')">Mauricio Macri</button>
+      <button class="btn btn-default option-segunda" ng-class="{active:segunda=='scioli'}" ng-click="selectSegunda($event,'scioli')">Daniel Scioli</button>
+      <button class="btn btn-default option-segunda" ng-class="{active:segunda=='blanco'}" ng-click="selectSegunda($event,'blanco')">Blanco/Impugnado</button>
   </div>
 </div>
 
-{{primera}}-{{segunda}}
+<hr/>
+
+<div class="row" ng-show="primera && segunda">
+  <div class="col-xs-12">
+    <p class="lead">Votaste <span class="label label-default">{{candidatoText[primera]}}</span> en primera vuelta y <span class="label label-default">{{candidatoText[segunda]}}</span> en el Ballotage. A las personas encuestadas que votaron como vos, le interesan mucho tema1, tema2, tema3.</p>
+  </div>
+</div>
+
+<hr/>
+
+Votos: {{primera}}-{{segunda}}
+Categoría: {{category[primera+'-'+segunda]}}

@@ -10,6 +10,31 @@
 angular.module('quiddityInteractiveApp')
   .controller('MainCtrl', function ($scope) {
 
+  	$scope.candidatoText = {
+  		'macri':'a Macri',
+  		'scioli': 'a Scioli',
+  		'blanco': 'en blanco o inpugnaste',
+  		'otro': 'a otro candidato'
+  	};
+
+  	$scope.category = {
+  		'macri-macri':   'base',
+
+  		'scioli-scioli': 'oposicion',
+
+  		'otro-scioli':   'desconfianza',
+  		'blanco-scioli': 'desconfianza',
+  		'macri-scioli':  'desconfianza',
+  		'blanco-blanco': 'desconfianza',
+  		'otro-blanco':   'desconfianza',
+  		'macri-blanco':  'desconfianza',
+  		'scioli-blanco': 'desconfianza',
+  		
+  		'otro-macri': 	 'confianza',
+  		'scioli-macri':  'confianza',
+  		'blanco-macri':  'confianza'
+  	};
+
   	$scope.primera = null;
   	$scope.segunda = null;
 
