@@ -23,14 +23,72 @@
 
 <hr/>
 
-<div class="row" ng-show="primera && segunda">
-  <div class="col-xs-12">
-    <p class="lead">Votaste <span class="label label-default">{{candidatoText[primera]}}</span> en primera vuelta y <span class="label label-default">{{candidatoText[segunda]}}</span> en el Ballotage. A las personas encuestadas que votaron como vos, le interesan mucho tema1, tema2, tema3.</p>
+<div ng-show="primera && segunda">
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="lead">Votaste <span class="label label-default">{{candidatoText[primera]}}</span> en primera vuelta y <span class="label label-default">{{candidatoText[segunda]}}</span> en el Ballotage. A las personas encuestadas que votaron como vos, aprueban las gestiones de gobierno en <span class="label label-default">{{data[category[primera+'-'+segunda]][0].tema}}</span>, <span class="label label-default">{{data[category[primera+'-'+segunda]][1].tema}}</span> y <span class="label label-default">{{data[category[primera+'-'+segunda]][2].tema}}</span></p>
+    </div>
   </div>
+
+  <div class="row">
+    <h2 class="text-center">¿Qué gestiones se APRUEBAN más?</h2>
+    <div class="col-md-3">
+      <h3>Oficialismo <small ng-show="category[primera+'-'+segunda]=='base'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.base | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+    <div class="col-md-3">
+      <h3>Oposición <small ng-show="category[primera+'-'+segunda]=='oposicion'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.oposicion | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+    <div class="col-md-3">
+      <h3>Voto confianza <small ng-show="category[primera+'-'+segunda]=='confianza'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.confianza | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+    <div class="col-md-3">
+      <h3>Voto desconfianza <small ng-show="category[primera+'-'+segunda]=='desconfianza'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.desconfianza | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="row">
+    <h2 class="text-center">¿Qué gestiones se DESAPRUEBAN más?</h2>
+    <div class="col-md-3">
+      <h3>Oficialismo <small ng-show="category[primera+'-'+segunda]=='base'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.base | orderBy:'total' | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+    <div class="col-md-3">
+      <h3>Oposición <small ng-show="category[primera+'-'+segunda]=='oposicion'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.oposicion | orderBy:'total' | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+    <div class="col-md-3">
+      <h3>Voto confianza <small ng-show="category[primera+'-'+segunda]=='confianza'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.confianza | orderBy:'total' | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+    <div class="col-md-3">
+      <h3>Voto desconfianza <small ng-show="category[primera+'-'+segunda]=='desconfianza'"><span class="label label-default">VOS</span></small></h3>
+      <ol>
+        <li ng-repeat="t in data.desconfianza | orderBy:'total' | limitTo:3">{{t.tema}}</li>
+      </ol>
+    </div>
+  </div>
+
 </div>
 
 <hr/>
-{{value}}
-
-Votos: {{primera}}-{{segunda}}
-Categoría: {{category[primera+'-'+segunda]}}

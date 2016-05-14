@@ -48,7 +48,7 @@ angular
                       that.data = {};
                       angular.forEach(tabletop.foundSheetNames,function(sheet){
                         that.data[sheet] = data[sheet].elements.sort(function(a,b){
-                          return a<b;
+                          return parseFloat(a.total) < parseFloat(b.total);
                         });
                       });
                       resolve({data:that.data});
