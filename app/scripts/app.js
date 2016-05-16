@@ -47,7 +47,11 @@ angular
                     callback: function(data, tabletop) {
                       that.data = {};
                       angular.forEach(tabletop.foundSheetNames,function(sheet){
-                        that.data[sheet] = data[sheet].elements.sort(function(a,b){
+                        that.data[sheet] = data[sheet].elements.filter(function(r){
+                          return (r.id != 1);
+                        });
+
+                        that.data[sheet] = that.data[sheet].sort(function(a,b){
                           return parseFloat(a.total) < parseFloat(b.total);
                         });
                       });
@@ -55,6 +59,7 @@ angular
                     },
                     simpleSheet: false,
                     postProcess: function(r){
+                      r.tema = r.tema.replace('Evaluación gestión en ','');
                       r.total = parseFloat(r.total.replace(',','.'));
                       r.apruebamucho = parseFloat(r.apruebamucho.replace(',','.'));
                       r.apruebapoco = parseFloat(r.apruebapoco.replace(',','.'));
