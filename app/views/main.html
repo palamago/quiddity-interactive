@@ -8,16 +8,16 @@
 <div class="row" ng-hide="loading">
   <div class="col-md-6">
       <h2>¿A quién votaste en primera vuelta?</h2>
-      <button class="btn btn-default option-primera" ng-class="{active:primera=='macri'}" ng-click="selectPrimera($event,'macri')">Mauricio Macri</button>
-      <button class="btn btn-default option-primera" ng-class="{active:primera=='scioli'}" ng-click="selectPrimera($event,'scioli')">Daniel Scioli</button>
-      <button class="btn btn-default option-primera" ng-class="{active:primera=='otro'}" ng-click="selectPrimera($event,'otro')">Otro candidato</button>
-      <button class="btn btn-default option-primera" ng-class="{active:primera=='blanco'}" ng-click="selectPrimera($event,'blanco')">Blanco/Impugnado</button>
+      <button class="btn btn-default option-primera macri" ng-class="{active:primera=='macri'}" ng-click="selectPrimera($event,'macri')">Mauricio Macri</button>
+      <button class="btn btn-default option-primera scioli" ng-class="{active:primera=='scioli'}" ng-click="selectPrimera($event,'scioli')">Daniel Scioli</button>
+      <button class="btn btn-default option-primera otro" ng-class="{active:primera=='otro'}" ng-click="selectPrimera($event,'otro')">Otro candidato</button>
+      <button class="btn btn-default option-primera blanco" ng-class="{active:primera=='blanco'}" ng-click="selectPrimera($event,'blanco')">Blanco/Impugnado</button>
   </div>
   <div class="col-md-6">
       <h2>¿A quién votaste en Ballotage?</h2>
-      <button class="btn btn-default option-segunda" ng-class="{active:segunda=='macri'}" ng-click="selectSegunda($event,'macri')">Mauricio Macri</button>
-      <button class="btn btn-default option-segunda" ng-class="{active:segunda=='scioli'}" ng-click="selectSegunda($event,'scioli')">Daniel Scioli</button>
-      <button class="btn btn-default option-segunda" ng-class="{active:segunda=='blanco'}" ng-click="selectSegunda($event,'blanco')">Blanco/Impugnado</button>
+      <button class="btn btn-default option-segunda macri" ng-class="{active:segunda=='macri'}" ng-click="selectSegunda($event,'macri')">Mauricio Macri</button>
+      <button class="btn btn-default option-segunda scioli" ng-class="{active:segunda=='scioli'}" ng-click="selectSegunda($event,'scioli')">Daniel Scioli</button>
+      <button class="btn btn-default option-segunda blanco" ng-class="{active:segunda=='blanco'}" ng-click="selectSegunda($event,'blanco')">Blanco/Impugnado</button>
   </div>
 </div>
 
@@ -125,7 +125,25 @@
     </div>
   </div>
 
+  <hr/>
+
+  <div class="row">
+    <h3 class="text-center">Compartir el resultado</h3>
+    <div class="col-md-3">
+      <a class="btn btn-primary" social-twitter>share on twitter</a>
+    </div>
+    <div class="col-md-3">
+      <a class="btn btn-primary" social-twitter status="My custom status">share on twitter</a>
+    </div>
+    <div class="col-md-3">
+      <a class="btn btn-primary" social-facebook>share on facebook</a>
+    </div>
+    <div class="col-md-3">
+      <a class="btn btn-primary" social-gplus>share on google plus</a>
+    </div>
+  </div>
 </div>
+
 
 <div class="row">
   <div id="example-width" class="col-md-3">

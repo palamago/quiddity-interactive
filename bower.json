@@ -12,7 +12,8 @@
     "angular-touch": "^1.4.0",
     "tabletop": "^1.4.3",
     "lodash": "^4.12.0",
-    "c3": "^0.4.11"
+    "c3": "^0.4.11",
+    "angular-social-links": "^0.0.23"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
