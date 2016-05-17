@@ -10,9 +10,11 @@
 angular.module('quiddityInteractiveApp')
   .controller('MainCtrl', function ($scope,TabletopService,$timeout) {
 
-  	$scope.theCharts = [];
+  	$scope.charts = {};
 
   	$scope.chartData = {};
+
+	$scope.loading = true;
 
   	TabletopService.getData().then(function(response){
   		$scope.data = response.data;
@@ -21,6 +23,10 @@ angular.module('quiddityInteractiveApp')
 				$scope.chartData[category+'-'+t.id+'-chart'] = t;
 			});
 		});
+		$timeout(function(){
+			$scope.createCharts();
+			$scope.loading = false;
+		},1000);
   	});
 
   	$scope.candidatoText = {
@@ -55,127 +61,140 @@ angular.module('quiddityInteractiveApp')
   		$scope.primera = candidato;
   		angular.element('.option-primera').removeAttr('disabled');
   		$event.currentTarget.disabled = 'disabled';
-  		$scope.renderResponse();
+  		if($scope.primera && $scope.segunda){
+  			$scope.updateCharts();
+  		}
   	};
 
   	$scope.selectSegunda = function($event,candidato){
   		$scope.segunda = candidato;
   		angular.element('.option-segunda').removeAttr('disabled');
   		$event.currentTarget.disabled = 'disabled';
-  		$scope.renderResponse();
+  		if($scope.primera && $scope.segunda){
+  			$scope.updateCharts();
+  		}
   	};
 
   	$scope.rendered = false;
 
-  	$scope.renderResponse = function(){
-  		if($scope.primera && $scope.segunda){
-          	if(!$scope.rendered){
-          		$scope.rendered = true;
-	  			angular.element('.chart-to-render').each(function(index,item){
-		  					var chart = c3.generate({
-			  					bindto: '#'+item.id,
-			  					size: {
-								  height: 50
-								},
-							    data: {
-							        columns: [
-							            [item.id, 0]
-							        ],
-							        type: 'bar',
-								  	color: function (color, d) {
-								  		return (d.value>0)?'green':'red';
-									}
-							    },
-							    axis: {
-									rotated: true,
-								 	x: {
-								    	show: false
-								  	},
-								  	y:{
-								  		show: false,
-								  		min: -200,
-								  		max: -200,
-								  		center: 0
-								  	}
-								},
-								grid: {
-								  y: {
-								    lines: [
-								      {value: 0, text: ''}
-								    ]
-								  }
-								},
-								legend: {
-								  show: false
-								},
-								tooltip:{
-									contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-							          var $$ = this, config = $$.config,
-							              titleFormat = config.tooltip_format_title || defaultTitleFormat,
-							              nameFormat = config.tooltip_format_name || function (name) { return name; },
-							              valueFormat = config.tooltip_format_value || defaultValueFormat,
-							              text, i, title, value, name, bgcolor;
+  	$scope.updateCharts = function(){
+        if(!$scope.rendered){
+          	$scope.rendered = true;
+	  		angular.element('.chart-to-render').each(function(index,item){
+				var chart = $scope.charts[item.id];
+				$timeout(function(){
+				chart.load({
+					        columns: [
+					            [item.id, $scope.chartData[item.id].total]
+					        ]
+						});
+				},500*index);
+			});
+		}
+  	}
 
-							              var data = $scope.chartData[d[0].id];
-							              console.log(data);
 
-							              if (! text) {
-							                  text = "<table class='" + $$.CLASS.tooltip + "'><tr><th colspan='2'>"+data.tema+"</th></tr>";
-							              }
+  	$scope.createCharts = function(){
+  		var w = $('.col-md-3#example-width .col-xs-12').width();
+		$('.chart-to-render').each(function(index,item){
+			$scope.charts[item.id] = c3.generate({
+				bindto: '#'+item.id,
+				size: {
+				  height: 50,
+				  width: w
+				},
+			    data: {
+			        columns: [
+			            [item.id, 0]
+			        ],
+			        type: 'bar',
+				  	color: function (color, d) {
+				  		var scale = d3.scale.threshold()
+								.range(['#d9534f','#e99184','#e2b9a2','#c7cca6','#9bcc8e','#5cb85c'])
+							    .domain([-150,-50,0,50,150]);
+				  		return scale(d.value);
+					}
+			    },
+			    axis: {
+					rotated: true,
+				 	x: {
+				    	show: false
+				  	},
+				  	y:{
+				  		show: false,
+				  		min: -200,
+				  		max: -200,
+				  		center: 0
+				  	}
+				},
+				grid: {
+				  y: {
+				    lines: [
+				      {value: 0, text: ''}
+				    ]
+				  }
+				},
+				legend: {
+				  show: false
+				},
+				tooltip:{
+					contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+			          var $$ = this, config = $$.config,
+			              titleFormat = config.tooltip_format_title || defaultTitleFormat,
+			              nameFormat = config.tooltip_format_name || function (name) { return name; },
+			              valueFormat = config.tooltip_format_value || defaultValueFormat,
+			              text, i, title, value, name, bgcolor;
 
-							              value = 'millones';
-							              bgcolor = 'red';
+			              var data = $scope.chartData[d[0].id];
 
-							              var colors = {
-												desaprueba_mucho:'#ff0000',
-												desaprueba_poco: '#c05e00',
-												aprueba_poco: '#7f7500',
-												aprueba_mucho: '#008000',
-												ns_nc: '#CCC'
-							              }
+			              if (! text) {
+			                  text = "<table class='" + $$.CLASS.tooltip + "'><tr><th colspan='2'>"+data.tema+"</th></tr>";
+			              }
 
-							              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-							              text += " <td class='name'><span style='background-color:" + colors['aprueba_mucho'] + "'></span>Aprueba Mucho</td>";
-							              text += " <td class='value'>" + data.aprueba_mucho.toFixed(2) + "%</td>";
-							              text += "</tr>";
+			              value = 'millones';
+			              bgcolor = 'red';
 
-							              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-							              text += " <td class='name'><span style='background-color:" + colors['aprueba_poco'] + "'></span>Aprueba</td>";
-							              text += " <td class='value'>" + data.aprueba_poco.toFixed(2) + "%</td>";
-							              text += "</tr>";
+			              var colors = {
+								desaprueba_mucho:'#ff0000',
+								desaprueba_poco: '#c05e00',
+								aprueba_poco: '#7f7500',
+								aprueba_mucho: '#008000',
+								ns_nc: '#CCC'
+			              }
 
-							              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-							              text += " <td class='name'><span style='background-color:" + colors['desaprueba_poco'] + "'></span>Desaprueba</td>";
-							              text += " <td class='value'>" + data.desaprueba_poco.toFixed(2) + "%</td>";
-							              text += "</tr>";
+			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
+			              text += " <td class='name'><span style='background-color:" + colors['aprueba_mucho'] + "'></span>Aprueba Mucho</td>";
+			              text += " <td class='value'>" + data.aprueba_mucho.toFixed(2) + "%</td>";
+			              text += "</tr>";
 
-							              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-							              text += " <td class='name'><span style='background-color:" + colors['desaprueba_mucho'] + "'></span>Desaprueba Mucho</td>";
-							              text += " <td class='value'>" + data.desaprueba_mucho.toFixed(2) + "%</td>";
-							              text += "</tr>";
+			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
+			              text += " <td class='name'><span style='background-color:" + colors['aprueba_poco'] + "'></span>Aprueba</td>";
+			              text += " <td class='value'>" + data.aprueba_poco.toFixed(2) + "%</td>";
+			              text += "</tr>";
 
-							              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-							              text += " <td class='name'><span style='background-color:" + colors['ns_nc'] + "'></span>No sabe / No contesta</td>";
-							              text += " <td class='value'>" + data.ns_nc.toFixed(2) + "%</td>";
-							              text += "</tr>";
+			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
+			              text += " <td class='name'><span style='background-color:" + colors['desaprueba_poco'] + "'></span>Desaprueba</td>";
+			              text += " <td class='value'>" + data.desaprueba_poco.toFixed(2) + "%</td>";
+			              text += "</tr>";
 
-							          		return text + "</table>";
-							      }
-								}
+			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
+			              text += " <td class='name'><span style='background-color:" + colors['desaprueba_mucho'] + "'></span>Desaprueba Mucho</td>";
+			              text += " <td class='value'>" + data.desaprueba_mucho.toFixed(2) + "%</td>";
+			              text += "</tr>";
 
-							});
-			  				$timeout(function(){
-								chart.load({
-									        columns: [
-									            [item.id, $scope.chartData[item.id].total]
-									        ]
-										});
-			  				},500*index);
-	  			});
-          	}
-  		} else {
-  			console.log('nada');
-  		}
+			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
+			              text += " <td class='name'><span style='background-color:" + colors['ns_nc'] + "'></span>No sabe / No contesta</td>";
+			              text += " <td class='value'>" + data.ns_nc.toFixed(2) + "%</td>";
+			              text += "</tr>";
+
+			          		return text + "</table>";
+			      	}				
+				}
+
+			});
+  				
+		});
+
   	};
 
-  });
+});
