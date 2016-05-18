@@ -16,10 +16,36 @@ angular.module('quiddityInteractiveApp')
 
 	$scope.loading = true;
 
+	$scope.temas = {
+		oposicion: {
+			aprueba:0,
+			desaprueba:0
+		},
+		base: {
+			aprueba:0,
+			desaprueba:0
+		},
+		confianza: {
+			aprueba:0,
+			desaprueba:0
+		},
+		desconfianza: {
+			aprueba:0,
+			desaprueba:0
+		},
+		total: 0
+	};
+
   	TabletopService.getData().then(function(response){
   		$scope.data = response.data;
 	  	angular.forEach($scope.data,function(topics,category){
+	  		$scope.temas.total = topics.length;
 			angular.forEach(topics,function(t){
+				if(t.total>=0){
+					$scope.temas[category].aprueba++;
+				} else {
+					$scope.temas[category].desaprueba++;
+				}
 				$scope.chartData[category+'-'+t.id+'-chart'] = t;
 			});
 		});
