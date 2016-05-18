@@ -24,17 +24,18 @@ angular.module('quiddityInteractiveApp')
 			});
 		});
 		$timeout(function(){
+			$('[data-toggle="tooltip"]').tooltip();
 			$scope.createCharts();
 			$scope.loading = false;
 
 			//read params
-			if($location.search().primera && $location.search().segunda){
+			/*if($location.search().primera && $location.search().segunda){
 				console.log($location.search().primera);
 				$('.option-primera.'+$location.search().primera).click();
 				$('.option-segunda.'+$location.search().segunda).click();
 			} else {
 				$location.search('');
-			}
+			}*/
 
 		},1000);
   	});
@@ -73,7 +74,7 @@ angular.module('quiddityInteractiveApp')
   		$event.currentTarget.disabled = 'disabled';
   		if($scope.primera && $scope.segunda){
   			$scope.updateCharts();
-  			$location.search({'primera':$scope.primera,'segunda':$scope.segunda});
+  			//$location.search({'primera':$scope.primera,'segunda':$scope.segunda});
   		}
   	};
 
@@ -83,7 +84,7 @@ angular.module('quiddityInteractiveApp')
   		$event.currentTarget.disabled = 'disabled';
   		if($scope.primera && $scope.segunda){
   			$scope.updateCharts();
-  			$location.search({'primera':$scope.primera,'segunda':$scope.segunda});
+  			//$location.search({'primera':$scope.primera,'segunda':$scope.segunda});
   		}
   	};
 
