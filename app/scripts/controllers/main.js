@@ -40,11 +40,16 @@ angular.module('quiddityInteractiveApp')
 		},1000);
   	});
 
-  	$scope.candidatoText = {
-  		'macri':'a Macri',
-  		'scioli': 'a Scioli',
-  		'blanco': 'en blanco o inpugnaste',
-  		'otro': 'a otro candidato'
+  	function candidatoTranslate(voto) {
+  		switch(voto){
+  			case 'otro-massa':
+  			case 'otro-stolbizer':
+  			case 'otro-del-cano':
+  			case 'otro-saa':
+  				return 'otro';
+  			default:
+  				return voto;
+  		}
   	};
 
   	$scope.category = {
@@ -69,7 +74,8 @@ angular.module('quiddityInteractiveApp')
   	$scope.segunda = null;
 
   	$scope.selectPrimera = function($event,candidato){
-  		$scope.primera = candidato;
+  		$scope.primera = candidatoTranslate(candidato);
+  		$scope.primera_selection = candidato;
   		angular.element('.option-primera').removeAttr('disabled');
   		$event.currentTarget.disabled = 'disabled';
   		if($scope.primera && $scope.segunda){
@@ -79,7 +85,7 @@ angular.module('quiddityInteractiveApp')
   	};
 
   	$scope.selectSegunda = function($event,candidato){
-  		$scope.segunda = candidato;
+  		$scope.segunda = candidatoTranslate(candidato);
   		angular.element('.option-segunda').removeAttr('disabled');
   		$event.currentTarget.disabled = 'disabled';
   		if($scope.primera && $scope.segunda){
