@@ -1,3 +1,177 @@
 body,html{
 	overflow-x: hidden;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1,h2,h3{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+p{
+	text-align: justify;
+	color: #666;
+}
+
+h1{
+	text-transform: uppercase;
+	font-size: 50px;
+	margin-bottom: 0px;
+}
+
+p.sub{
+	font-size: 20px;
+	margin-bottom: 40px;
+	margin-top: 0px;
+	color: #666;
+}
+
+h2{
+	text-transform: uppercase;
+}
+
+h3{
+
+}
+
+
+h4{
+	font-family: 'Open Sans', sans-serif;
+	margin-top: 10px;
+}
+
+hr{
+	border-top: 2px solid #8f8f8f;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.btn-quiddity{
+	background-color: #ccc;
+	border-radius: 0;
+	padding: 10px 15px;
+	margin: 4px;
+	font-size: 18px;
+	color: #000;
+}
+
+.btn-quiddity:hover{
+	background-color: #c5bbed;
+}
+
+.btn-quiddity.active{
+	background-color: #c5bbed;
+}
+
+.row-text{
+	background-color: #ededed;
+	border-bottom: solid 2px #8f8f8f;
+	border-top: solid 2px #8f8f8f;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.row-text p.lead{
+	margin: 40px;
+	text-align: justify;
+	line-height: 40px;
+}
+
+.row-text p.lead strong{
+	background-color: #c5bbed;
+	font-weight: normal;
+	padding: 0 5px;
+}
+
+.row-charts{
+	
+}
+.row-charts hr{
+	margin-bottom: 0px;
+}
+.row-charts .chart-to-render{
+	margin-bottom: 20px;
+}
+.row-charts .col-selected{
+	background-color: #ededed;
+}
+
+.label-quiddity{
+	background-color: #666666;
+	border-radius: 0;
+	display: none;
+}
+
+.row-charts .col-selected .label-quiddity{
+	display: inline;
+}
+
+.table-quiddity{
+	color: #000;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.table-quiddity table{
+	border-collapse: collapse;
+}
+
+.table-quiddity th{
+	background-color: #949494;
+	padding: 5px;
+}
+
+.table-quiddity .name{
+	text-align: left;
+	padding: 5px;
+}
+
+.table-quiddity .value{
+	text-align: right;
+	background-color: #FFF;
+	border: 1px solid #949494;
+	padding: 5px;
+}
+
+.row-footer a{
+	color: #777;
+}
+
+.row-footer a:hover{
+	text-decoration: underline;
+}
+
+.tooltip {
+	opacity: 1;
+}
+
+.tooltip > .tooltip-inner {
+	background-color: #949494;
+	color:#000;
+	border-radius: 0;
+	opacity: 1;
+	width: 400px;
+}
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-color: #949494; /* black */
+  border-width: 0 5px 5px;
+}
+
+.fa-circle-twitter{
+	color: #78c8eb;
+}
+
+.fa-circle-facebook{
+	color: #3766a1;
+}
+
+.fa-circle-google{
+	color: #d64b3e;
+}
+
+.row-social{
+	margin: 50px 0;
 }

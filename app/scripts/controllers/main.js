@@ -133,7 +133,7 @@ angular.module('quiddityInteractiveApp')
 					            [item.id, $scope.chartData[item.id].total]
 					        ]
 						});
-				},500*index);
+				},200*index);
 			});
 		}
   	}
@@ -193,42 +193,42 @@ angular.module('quiddityInteractiveApp')
 			              var data = $scope.chartData[d[0].id];
 
 			              if (! text) {
-			                  text = "<table class='" + $$.CLASS.tooltip + "'><tr><th colspan='2'>"+data.tema+"</th></tr>";
+			                  text = "<table class='table-quiddity' border='0' cellspacing='0' cellpadding='0'><tr><th colspan='2'>"+data.tema+"</th></tr>";
 			              }
 
 			              value = 'millones';
 			              bgcolor = 'red';
 
 			              var colors = {
-								desaprueba_mucho:'#ff0000',
-								desaprueba_poco: '#c05e00',
-								aprueba_poco: '#7f7500',
-								aprueba_mucho: '#008000',
+								desaprueba_mucho:'#ff8080',
+								desaprueba_poco: '#f5bc9f',
+								aprueba_poco: '#c3de9b',
+								aprueba_mucho: '#75bd8b',
 								ns_nc: '#CCC'
 			              }
 
 			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-			              text += " <td class='name'><span style='background-color:" + colors['aprueba_mucho'] + "'></span>Aprueba Mucho</td>";
+			              text += " <td class='name' style='background-color:" + colors['aprueba_mucho'] + "'>Aprueba Mucho</td>";
 			              text += " <td class='value'>" + data.aprueba_mucho.toFixed(2) + "%</td>";
 			              text += "</tr>";
 
 			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-			              text += " <td class='name'><span style='background-color:" + colors['aprueba_poco'] + "'></span>Aprueba</td>";
+			              text += " <td class='name' style='background-color:" + colors['aprueba_poco'] + "'>Aprueba</td>";
 			              text += " <td class='value'>" + data.aprueba_poco.toFixed(2) + "%</td>";
 			              text += "</tr>";
 
 			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-			              text += " <td class='name'><span style='background-color:" + colors['desaprueba_poco'] + "'></span>Desaprueba</td>";
+			              text += " <td class='name' style='background-color:" + colors['desaprueba_poco'] + "'>Desaprueba</td>";
 			              text += " <td class='value'>" + data.desaprueba_poco.toFixed(2) + "%</td>";
 			              text += "</tr>";
 
 			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-			              text += " <td class='name'><span style='background-color:" + colors['desaprueba_mucho'] + "'></span>Desaprueba Mucho</td>";
+			              text += " <td class='name' style='background-color:" + colors['desaprueba_mucho'] + "'>Desaprueba Mucho</td>";
 			              text += " <td class='value'>" + data.desaprueba_mucho.toFixed(2) + "%</td>";
 			              text += "</tr>";
 
 			              text += "<tr class='" + $$.CLASS.tooltipName + "-" + d[0].id + "'>";
-			              text += " <td class='name'><span style='background-color:" + colors['ns_nc'] + "'></span>No sabe / No contesta</td>";
+			              text += " <td class='name' style='background-color:" + colors['ns_nc'] + "'>No sabe / No contesta</td>";
 			              text += " <td class='value'>" + data.ns_nc.toFixed(2) + "%</td>";
 			              text += "</tr>";
 
