@@ -107,7 +107,18 @@ angular.module('quiddityInteractiveApp')
   	$scope.primera = null;
   	$scope.segunda = null;
 
+  	$scope.votoStr = {
+  		'macri': 'a Macri',
+  		'scioli': 'a Scioli',
+  		'blanco': 'en blanco/anulado',
+  		'otro-saa': 'a Rodríguez Saá',
+  		'otro-stolbizer': 'a Stolbizer',
+  		'otro-del-cano': 'a Del Caño',
+  		'otro-massa': 'a Massa'
+  	}
+
   	$scope.selectPrimera = function($event,candidato){
+  		$scope.primeraCandidato = candidato;
   		$scope.primera = candidatoTranslate(candidato);
   		$scope.primera_selection = candidato;
   		angular.element('.option-primera').removeAttr('disabled');
@@ -119,6 +130,7 @@ angular.module('quiddityInteractiveApp')
   	};
 
   	$scope.selectSegunda = function($event,candidato){
+  		$scope.segundaCandidato = candidato;
   		$scope.segunda = candidatoTranslate(candidato);
   		angular.element('.option-segunda').removeAttr('disabled');
   		$event.currentTarget.disabled = 'disabled';

@@ -73,7 +73,7 @@
       </p>
 
       <p class="lead" ng-show="category[primera+'-'+segunda]=='desconfianza'">
-        No votaste a <strong>Scioli</strong> en primera vuelta pero sí en la segunda (o votaste en blanco). Digamos que el actual gobierno te provoca al menos <strong>escepticismo</strong>, como al 21% de los encuestados. Los que votaron como vos desaprueban <strong>{{temas.desconfianza.desaprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>empeorará</strong>. Entre los <strong>escépticos</strong>, las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>. Pero no todas son malas noticias. Las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>.
+        Votaste <strong>{{votoStr[primeraCandidato]}}</strong> en primera vuelta y <strong>{{votoStr[segundaCandidato]}}</strong> en ballottage. Digamos que el actual gobierno te provoca al menos <strong>escepticismo</strong>, como al 21% de los encuestados. Los que votaron como vos desaprueban <strong>{{temas.desconfianza.desaprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>empeorará</strong>. Entre los <strong>escépticos</strong>, las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>. Pero no todas son malas noticias. Las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>.
       </p>
 
       <p class="lead" ng-show="category[primera+'-'+segunda]=='oposicion'">
@@ -84,7 +84,8 @@
   </div>
 
   <div class="row row-charts">
-    <h2 class="text-center">Así evalúan las políticias del gobierno los demás encuestados</h2>    
+    <h2 class="text-center">Así evalúan las políticias del gobierno los demás encuestados</h2>
+    <h2 class="text-center"><small>Para ver más datos, pasa el mouse sobre los gráficos</small></h2>   
     <div class="col-md-3" ng-class="{'col-selected':category[primera+'-'+segunda]=='base'}">
       <h3 class="">Oficialistas <span class="label label-quiddity">VOS</span>
       <i data-toggle="tooltip" data-placement="top" title="Votaron a Macri en primera y segunda vuelta" class="glyphicon glyphicon-info-sign pull-right"></i>
