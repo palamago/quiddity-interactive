@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1 class="text-center">¿Qué piensan aquellos que votaron como yo?</h1>
-    <p class="text-center sub">Encuesta de Quiddity en el área metropolitana de Buenos Aires*</p>
+    <h1 class="text-center">¿Qué piensan los que votaron como vos?</h1>
+    <p class="text-center sub">Encuesta de Quiddity en el área metropolitana de Buenos Aires <a href="javascript:;" ng-click="goTo('nota')" data-toggle="tooltip" data-placement="top" title="Ver detalles metodológicos"><i class="glyphicon glyphicon-info-sign"></i></a></p>
     <p class="lead">Tras cinco meses de nuevo gobierno, el 53% de los votantes aprueba la gestión de Macri y el 61% cree que la economía mejorará en el próximo año. Los votantes valoran algunos logros del gobierno, como la relación con otros países, el combate a la corrupción y la lucha contra el narcotráfico. Sin embargo, una mayoría desaprueba la actuación del gobierno para reducir la pobreza, controlar la inflación y crear empleo. Solo 3 de cada 10 votantes creen que su economía personal mejorará en el próximo año.</p>
     <p class="lead">Hasta acá, lo que piensan los residentes del área metropolitana de Buenos Aires. Pero ¿qué piensan los que votaron como vos?</p>
   </div>
 </div>
 <div class="row">
   <div class="col-md-4 col-md-offset-4 text-center">
-    <a href="javascript:;" social-twitter status="¿Querés saber cómo piensan los que votaron como vos? vía @quidditydata">
+    <a href="javascript:;" social-twitter status="¿Querés saber cómo piensan los que votaron como vos? vía @quidditydata http://google.com">
       <span class="fa-stack fa-lg fa-3x">
         <i class="fa fa-circle fa-circle-twitter fa-stack-2x"></i>
         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -32,6 +32,9 @@
 <hr/>
 
 <div class="row" ng-hide="loading">
+  <div class="col-md-12">
+    <p class="lead">Contanos a quién votaste y te mostramos qué piensan los que votaron como vos <i data-toggle="tooltip" data-placement="top" title="No se guardará registro de tu voto." class="glyphicon glyphicon-info-sign"></i></p>
+  </div>
   <div class="col-md-6">
       <h2 class="text-center">¿A quién votaste en primera vuelta?</h2>
       <div class="text-center">
@@ -41,12 +44,12 @@
         <button class="btn btn-quiddity option-primera otro-stolbizer" ng-class="{active:primera_selection=='otro-stolbizer'}" ng-click="selectPrimera($event,'otro-stolbizer')">Stolbizer</button>
         <br/>
         <button class="btn btn-quiddity option-primera otro-del-cano" ng-class="{active:primera_selection=='otro-del-cano'}" ng-click="selectPrimera($event,'otro-del-cano')">Del Caño</button>
-        <button class="btn btn-quiddity option-primera otro-saa" ng-class="{active:primera_selection=='otro-saa'}" ng-click="selectPrimera($event,'otro-saa')">Rodríguez Saa</button>
+        <button class="btn btn-quiddity option-primera otro-saa" ng-class="{active:primera_selection=='otro-saa'}" ng-click="selectPrimera($event,'otro-saa')">Rodríguez Saá</button>
         <button class="btn btn-quiddity option-primera blanco" ng-class="{active:primera_selection=='blanco'}" ng-click="selectPrimera($event,'blanco')">Blanco/Anulado</button>
       </div>
   </div>
   <div class="col-md-6" ng-show="primera">
-      <h2 class="text-center">¿Y en el Ballotage?</h2>
+      <h2 class="text-center">¿Y en el Ballottage?</h2>
       <div class="text-center">
         <button class="btn btn-quiddity option-segunda macri" ng-class="{active:segunda=='macri'}" ng-click="selectSegunda($event,'macri')">Macri</button>
         <button class="btn btn-quiddity option-segunda scioli" ng-class="{active:segunda=='scioli'}" ng-click="selectSegunda($event,'scioli')">Scioli</button>
@@ -59,18 +62,18 @@
 
 <div ng-show="primera && segunda">
   
-  <div class="row row-text">
+  <div id="results" class="row row-text">
     <div class="col-xs-12">
       <p ng-show="category[primera+'-'+segunda]=='base'" class="lead">
         Votaste dos veces a <strong>Macri</strong>. Digamos que sos <strong>oficialista</strong>, como el 31% de los encuestados. Los que votaron como vos aprueban <strong>{{temas.base.aprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>mejorará</strong>. Entre los <strong>oficialistas</strong>, las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>. Pero no todas son buenas noticias. Las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>.
       </p>
 
       <p ng-show="category[primera+'-'+segunda]=='confianza'" class="lead">
-        No votaste a <strong>Macri</strong> en la primera vuelta pero sí en el ballottage. Digamos que el actual gobierno algo te <strong>entusiasma</strong>, como al 17% de los encuestados. Los que votaron como vos aprueban <strong>{{temas.confianza.aprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>mejorará</strong>. Entre los <strong>entusiastas</strong>, las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>. Pero no todas son buenas noticias. Las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>.
+        No votaste a <strong>Macri</strong> en la primera vuelta pero sí en el ballottage. Digamos que el actual gobierno algo te <strong>entusiasma</strong>, como al 18% de los encuestados. Los que votaron como vos aprueban <strong>{{temas.confianza.aprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>mejorará</strong>. Entre los <strong>entusiastas</strong>, las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>. Pero no todas son buenas noticias. Las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>.
       </p>
 
       <p class="lead" ng-show="category[primera+'-'+segunda]=='desconfianza'">
-        No votaste a <strong>Scioli</strong> en primera vuelta pero sí en la segunda (o votaste en blanco). Digamos que el actual gobierno te provoca al menos <strong>escepticismo</strong>, como al 22% de los encuestados. Los que votaron como vos desaprueban <strong>{{temas.desconfianza.desaprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>empeorará</strong>. Entre los <strong>escépticos</strong>, las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>. Pero no todas son malas noticias. Las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>.
+        No votaste a <strong>Scioli</strong> en primera vuelta pero sí en la segunda (o votaste en blanco). Digamos que el actual gobierno te provoca al menos <strong>escepticismo</strong>, como al 21% de los encuestados. Los que votaron como vos desaprueban <strong>{{temas.desconfianza.desaprueba}} de los {{temas.total}} temas</strong> relevados y creen que la economía <strong>empeorará</strong>. Entre los <strong>escépticos</strong>, las políticas peor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][9].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][8].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][7].tema}}</strong>. Pero no todas son malas noticias. Las políticas mejor evaluadas son las de <strong>{{data[category[primera+'-'+segunda]][0].tema}}</strong>, <strong>{{data[category[primera+'-'+segunda]][1].tema}}</strong> y <strong>{{data[category[primera+'-'+segunda]][2].tema}}</strong>.
       </p>
 
       <p class="lead" ng-show="category[primera+'-'+segunda]=='oposicion'">
@@ -83,7 +86,9 @@
   <div class="row row-charts">
     <h2 class="text-center">Así evalúan las políticias del gobierno los demás encuestados</h2>    
     <div class="col-md-3" ng-class="{'col-selected':category[primera+'-'+segunda]=='base'}">
-      <h3 data-toggle="tooltip" data-placement="top" title="Votaron a Macri en primera y segunda vuelta" class="">Oficialistas <span class="label label-quiddity">VOS</span></h3>
+      <h3 class="">Oficialistas <span class="label label-quiddity">VOS</span>
+      <i data-toggle="tooltip" data-placement="top" title="Votaron a Macri en primera y segunda vuelta" class="glyphicon glyphicon-info-sign pull-right"></i>
+      </h3>
       <div class="row">
         <div class="col-xs-12  text-center" ng-repeat="t in data.base">
           <hr/>
@@ -94,7 +99,9 @@
     </div>
 
     <div class="col-md-3" ng-class="{'col-selected':category[primera+'-'+segunda]=='confianza'}">
-      <h3 data-toggle="tooltip" data-placement="top" title="No votaron a Macri en la primera vuelta pero sí en la segunda" class="">Entusiastas <span class="label label-quiddity">VOS</span></h3>
+      <h3 class="">Entusiastas <span class="label label-quiddity">VOS</span>
+      <i data-toggle="tooltip" data-placement="top" title="No votaron a Macri en la primera vuelta pero sí en la segunda" class="glyphicon glyphicon-info-sign pull-right"></i>
+      </h3>
       <div class="row">
         <div class="col-xs-12  text-center" ng-repeat="t in data.confianza">
           <hr/>
@@ -105,7 +112,9 @@
     </div>
 
     <div class="col-md-3" ng-class="{'col-selected':category[primera+'-'+segunda]=='desconfianza'}">
-      <h3 data-toggle="tooltip" data-placement="top" title="No votaron a Scioli en la primera vuelta pero sí en la segunda (o votaron en blanco)" class="">Escépticos <span class="label label-quiddity">VOS</span></h3>
+      <h3 class="">Escépticos <span class="label label-quiddity">VOS</span>
+      <i data-toggle="tooltip" data-placement="top" title="No votaron a Scioli en la primera vuelta pero sí en la segunda (o votaron en blanco)" class="glyphicon glyphicon-info-sign pull-right"></i>
+      </h3>
       <div class="row">
         <div class="col-xs-12  text-center" ng-repeat="t in data.desconfianza">
           <hr/>
@@ -116,7 +125,9 @@
     </div>
 
     <div class="col-md-3" ng-class="{'col-selected':category[primera+'-'+segunda]=='oposicion'}">
-      <h3 data-toggle="tooltip" data-placement="top" title="Votaron a Scioli en primera y segunda vuelta" class="">Opositores <span class="label label-quiddity">VOS</span></h3>
+      <h3 class="">Opositores <span class="label label-quiddity">VOS</span>
+      <i data-toggle="tooltip" data-placement="top" title="Votaron a Scioli en primera y segunda vuelta" class="glyphicon glyphicon-info-sign pull-right"></i>
+      </h3>
       <div class="row">
         <div class="col-xs-12  text-center" ng-repeat="t in data.oposicion">
           <hr/>
@@ -129,8 +140,9 @@
   </div>
 
   <div class="row  row-social">
+    <h2 class="text-center">Si los resultados te parecieron interesantes, compartilo</h2>
     <div class="col-md-4 col-md-offset-4 text-center">
-      <a href="javascript:;" social-twitter status="¿Querés saber cómo piensan los que votaron como vos? vía @quidditydata">
+      <a href="javascript:;" social-twitter status="¿Querés saber cómo piensan los que votaron como vos? vía @quidditydata http://google.com">
         <span class="fa-stack fa-lg fa-3x">
           <i class="fa fa-circle fa-circle-twitter fa-stack-2x"></i>
           <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -166,7 +178,13 @@
 
 <div class="row row-footer">
   <div class="col-md-12">
-    <p class="text-muted"><a data-toggle="tooltip" data-placement="top" title="Universo: residentes del área metropolitana de Buenos Aires mayores de 18 años. Tamaño de la muestra: 600 casos. Margen de error: +/- 4,08% para un nivel de confianza del 95%. Tipo de encuesta: telefónica por sistema CATI. Fecha de campo: 12 al 15 de mayo de 2016." href="javascript:;">* Nota metodológica</a></p>
+    <p id="nota"><strong><i class="glyphicon glyphicon-info-sign"></i> Nota metodológica</strong></p>
+    <p class="text-muted">Universo: residentes del área metropolitana de Buenos Aires mayores de 18 años.</p>
+    <p class="text-muted">Tamaño de la muestra: 600 casos.</p>
+    <p class="text-muted">Margen de error: +/- 4,08% para un nivel de confianza del 95%.</p>
+    <p class="text-muted">Tipo de encuesta: telefónica por sistema CATI.</p>
+    <p class="text-muted">Fecha de campo: 12 al 15 de mayo de 2016.</p>
+    <hr>
     <p class="text-muted">En Quiddity integramos investigación de opinión pública y análisis de grandes bases de datos para diseñar estrategias que ayuden a nuestros clientes a alcanzar sus objetivos.</p>
     <p class="text-muted">
       <a href="mailto:info@quiddity.info">info@quiddity.info</a> | 
